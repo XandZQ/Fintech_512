@@ -1,4 +1,4 @@
-# FinTech 512 — Software Engineering Midterm Study Notes
+ # FinTech 512 — Software Engineering Midterm Study Notes
 
 ## Overview
 
