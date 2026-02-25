@@ -372,115 +372,30 @@ Module (Public Interface)
 
 ---
 
-## 6. Design Patterns 设计模式
+## 6. Design Patterns 设计模式 (Introduction — 完整详解见 [[Week4-DesignPatterns-Testing]])
 
-Design patterns are **proven, reusable solutions** to common design problems. They were popularized by the **"Gang of Four" (GoF)** book (1994): Gamma, Helm, Johnson, Vlissides.
+Design patterns are **proven, reusable solutions** to common design problems. They were popularized by the **"Gang of Four" (GoF)** book (1994).
 
-> 设计模式不是代码，是**解决常见问题的模板**。你需要根据具体情况调整。
+> 设计模式不是代码，是**解决常见问题的模板**。
 
-### 6.1 Categories of Design Patterns 分类
+### 6.1 Three Categories 三大分类
 
-| Category | Purpose | 目的 |
+| Category | Purpose 目的 | Key Patterns (详见 Week 4) |
 |----------|---------|------|
-| **Creational** 创建型 | How objects are created | 如何创建对象 |
-| **Structural** 结构型 | How classes/objects are composed | 如何组合类/对象 |
-| **Behavioral** 行为型 | How objects interact/communicate | 对象如何交互 |
+| **Creational** 创建型 | 如何创建对象 | [[Week4-DesignPatterns-Testing#5. Factory Patterns 工厂模式\|Factory]], [[Week4-DesignPatterns-Testing#6. Singleton Pattern 单例模式\|Singleton]] |
+| **Structural** 结构型 | 如何组合类/对象 | [[Week4-DesignPatterns-Testing#4. Decorator Pattern 装饰者模式\|Decorator]], [[Week4-DesignPatterns-Testing#7. Adapter Pattern 适配器模式\|Adapter]], [[Week4-DesignPatterns-Testing#8. Facade Pattern 外观模式\|Facade]] |
+| **Behavioral** 行为型 | 对象如何交互 | [[Week4-DesignPatterns-Testing#2. Strategy Pattern 策略模式\|Strategy]], [[Week4-DesignPatterns-Testing#3. Observer Pattern 观察者模式\|Observer]], [[Week4-DesignPatterns-Testing#9. Command Pattern 命令模式\|Command]] |
 
-### 6.2 Key Patterns Covered in This Course
+### 6.2 Core Principles Behind All Patterns 模式背后的原则
 
-#### Strategy Pattern 策略模式 (Behavioral)
+这些原则连接了 [[#3. SOLID Principles SOLID原则|SOLID]] 和具体 Design Patterns：
 
-**Problem**: You have multiple algorithms/behaviors and want to switch between them without changing the client code.
+1. **Encapsulate what varies** 封装变化 → Strategy, State
+2. **Program to an interface** 面向接口编程 → Factory, Observer
+3. **Favor composition over inheritance** 组合优于继承 → Decorator, Strategy
+4. **Strive for loosely coupled designs** 追求松耦合 → Observer, Facade
 
-**Solution**: Define a family of algorithms, encapsulate each one, and make them **interchangeable**.
-
-```
-Context
-  │
-  └── has-a → Strategy (interface)
-                  ├── ConcreteStrategyA
-                  ├── ConcreteStrategyB
-                  └── ConcreteStrategyC
-```
-
-**Example**: A sorting system that can use different algorithms:
-```python
-class SortStrategy:          # Interface
-    def sort(self, data): pass
-
-class QuickSort(SortStrategy):
-    def sort(self, data): ...  # Quick sort implementation
-
-class MergeSort(SortStrategy):
-    def sort(self, data): ...  # Merge sort implementation
-
-class Sorter:
-    def __init__(self, strategy: SortStrategy):
-        self.strategy = strategy    # Can switch at runtime!
-
-    def do_sort(self, data):
-        return self.strategy.sort(data)
-```
-
-> Strategy pattern 体现了 [[#3.2 Open/Closed Principle (OCP) 开闭原则|OCP]] 和 [[#3.5 Dependency Inversion Principle (DIP) 依赖反转原则|DIP]] — 添加新算法无需修改现有代码。
-
-#### Observer Pattern 观察者模式 (Behavioral)
-
-**Problem**: One object changes state, and other objects need to be **notified automatically**.
-
-**Solution**: Define a one-to-many dependency. When the **Subject** changes, all its **Observers** are notified.
-
-```
-Subject (Observable)
-  │
-  ├── attach(observer)
-  ├── detach(observer)
-  └── notify() ──→ Observer 1: update()
-                ──→ Observer 2: update()
-                ──→ Observer 3: update()
-```
-
-**Real-world analogy**: A YouTube channel (Subject) and its subscribers (Observers). When a new video is uploaded, all subscribers get notified.
-
-#### Factory Pattern 工厂模式 (Creational)
-
-**Problem**: You need to create objects without specifying the exact class to create (decided at runtime).
-
-**Solution**: Use a factory method/class that **encapsulates object creation**.
-
-```python
-class ShapeFactory:
-    def create_shape(self, shape_type):
-        if shape_type == "circle":
-            return Circle()
-        elif shape_type == "rectangle":
-            return Rectangle()
-        elif shape_type == "triangle":
-            return Triangle()
-```
-
-> The client code only depends on the **Shape interface**, not on specific classes. This supports [[#3.2 Open/Closed Principle (OCP) 开闭原则|OCP]] and [[#3.5 Dependency Inversion Principle (DIP) 依赖反转原则|DIP]].
-
-#### Singleton Pattern 单例模式 (Creational)
-
-**Problem**: You need **exactly one instance** of a class in the entire application.
-
-**Solution**: Make the constructor private and provide a static method to get the single instance.
-
-```python
-class Database:
-    _instance = None
-
-    @staticmethod
-    def get_instance():
-        if Database._instance is None:
-            Database._instance = Database()
-        return Database._instance
-```
-
-**Use cases**: Database connections, logging, configuration managers.
-
-> ⚠️ Singleton is sometimes considered an **anti-pattern** because it introduces global state and makes testing harder. 单例有时被认为是反模式，因为它引入全局状态。
+> 💡 所有 Design Patterns 都是 SOLID 和 [[#4. Coupling and Cohesion 耦合与内聚|Coupling/Cohesion]] 原则的**具体应用**。先学好原则，再学模式会容易得多。完整 12+ 模式详解在 [[Week4-DesignPatterns-Testing]]。
 
 ---
 
@@ -739,43 +654,23 @@ Monolith:                    Microservices:
 
 ---
 
-## 10. Code Smells and Refactoring 代码异味与重构
+## 10. Code Smells and Refactoring 代码异味与重构（概述）
 
-### 10.1 What are Code Smells? 什么是代码异味？
+Code smells are **indicators of potential problems** — they don't cause bugs directly, but suggest the design could be improved. Refactoring changes **internal structure** without changing **external behavior**.
 
-Code smells are **indicators of potential problems** in the code. They don't cause bugs directly, but they suggest the design could be improved.
+> 代码异味不是 bug，而是"something doesn't feel right"。重构 = 改结构不改行为。
 
-> 代码异味不是 bug，而是"something doesn't feel right"——代码中的不良信号。
+**Quick Reference** (详细内容、完整分类和重构手法见 [[Week3-Reviews-OODesign-Refactoring#9. Code Smells 代码异味 (Detailed)]])：
 
-### Common Code Smells:
+| Category | Examples | 常用重构 |
+|----------|---------|---------|
+| **Bloaters** 膨胀类 | Long Method, Large Class, Long Parameter List | Extract Method, Extract Class |
+| **OO Abusers** 面向对象滥用 | Switch Statements, Refused Bequest | Replace Conditional with Polymorphism |
+| **Change Preventers** 阻碍变更 | Shotgun Surgery, Divergent Change | Move Method, Extract Class |
+| **Dispensables** 可删除 | Duplicate Code, Dead Code, Comments（过多注释） | Delete, Extract Method |
+| **Couplers** 耦合过度 | Feature Envy, Message Chains | Move Method, Hide Delegate |
 
-| Smell | Description | 说明 | Solution |
-|-------|-------------|------|----------|
-| **Long Method** | Method is too long (hard to understand) | 方法太长 | Extract method |
-| **Large Class** | Class has too many responsibilities | 类职责过多 | Extract class (apply [[#3.1 Single Responsibility Principle (SRP) 单一职责原则\|SRP]]) |
-| **Duplicate Code** | Same code in multiple places | 重复代码 | Extract method/class ([[#2.1 DRY — Don't Repeat Yourself 不要重复自己\|DRY]]) |
-| **Long Parameter List** | Method takes too many parameters | 参数太多 | Create parameter object |
-| **Feature Envy** | Method uses more data from another class than its own | 方法更多使用其他类的数据 | Move method to the other class |
-| **Shotgun Surgery** | One change requires editing many different classes | 一个改动需要修改很多类 | Move related code together |
-| **God Class** | One class controls everything | 一个类控制所有事情 | Split into smaller classes |
-| **Dead Code** | Code that is never executed | 永远不会执行的代码 | Delete it |
-
-### 10.2 Refactoring 重构
-
-**Refactoring** = changing the **internal structure** of code without changing its **external behavior**.
-
-> 重构：改变代码内部结构，但不改变外部行为。配合 [[Week1-Software-Engineering-Introduction#11. Test-Driven Development (TDD) 测试驱动开发|TDD]] 使用——测试保证重构不会引入 bug。
-
-**Common refactoring techniques**:
-
-| Technique | What it does |
-|-----------|-------------|
-| **Extract Method** | Pull out a code block into a named method |
-| **Extract Class** | Split a large class into two or more smaller classes |
-| **Rename** | Give variables/methods/classes better, clearer names |
-| **Move Method** | Move a method to the class where it belongs |
-| **Replace Conditional with Polymorphism** | Replace `if/switch` chains with inheritance |
-| **Introduce Parameter Object** | Group related parameters into a single object |
+> 💡 **考试提示**: 要能根据代码片段**识别 smell 名称**并说出**对应的重构手法**。详见 [[Week3-Reviews-OODesign-Refactoring#10. Refactoring Catalog 重构目录]]。
 
 ---
 

@@ -160,88 +160,27 @@ Four core values:
 - **Working software** is the primary measure of progress 可工作的软件是进度的主要衡量标准
 - Continuous attention to **technical excellence** 持续关注技术卓越
 
-### 4.3 Scrum
+### 4.3 Scrum (Quick Overview — 详见 [[Week6-TestDoubles-Methodologies#10. Scrum Framework 敏捷Scrum框架]])
 
-**Scrum** is the most popular agile framework. It defines specific **roles, events, and artifacts**.
+**Scrum** 是最流行的 Agile 框架，记住核心结构：
 
-#### Scrum Roles 角色:
+- **3 Roles**: Product Owner (管需求), Scrum Master (管流程), Development Team (做开发)
+- **5 Events**: Sprint (迭代周期), Sprint Planning, Daily Standup, Sprint Review, Sprint Retrospective
+- **3 Artifacts**: Product Backlog (所有需求), Sprint Backlog (本次要做的), Increment (已完成的产品)
 
-| Role | Responsibility |
-|------|---------------|
-| **Product Owner (PO)** 产品负责人 | Represents the customer; manages the [[#Product Backlog]]; prioritizes [[#6. User Stories 用户故事\|user stories]] |
-| **Scrum Master (SM)** | Facilitates the process; removes obstacles; NOT a project manager |
-| **Development Team** 开发团队 | Cross-functional, self-organizing; typically 3-9 people |
+> **Exam tip**: 记住 3-5-3 结构。完整细节和对比表格在 [[Week6-TestDoubles-Methodologies#10. Scrum Framework 敏捷Scrum框架]]。
 
-#### Scrum Events 事件:
+### 4.4 Kanban (Quick Overview — 详见 [[Week6-TestDoubles-Methodologies#11. Kanban 看板方法]])
 
-| Event | Duration | Purpose |
-|-------|----------|---------|
-| **Sprint** | 2-4 weeks (fixed) | One iteration cycle; produces a potentially shippable increment |
-| **Sprint Planning** | Start of sprint | Team selects stories from backlog; creates sprint backlog |
-| **Daily Standup** | 15 min, every day | 3 questions: What did I do? What will I do? Any blockers? |
-| **Sprint Review** | End of sprint | Demo working software to stakeholders; get feedback |
-| **Sprint Retrospective** | After review | Team reflects: what went well? what to improve? |
+核心概念：**Visual board** (看板) + **WIP Limits** (限制在制品) + **Continuous flow** (持续流动，无固定 Sprint)
 
-#### Scrum Artifacts 工件:
+> Scrum vs Kanban 详细对比见 [[Week6-TestDoubles-Methodologies#Scrum vs Kanban 对比]]
 
-##### Product Backlog
-An **ordered list** of everything needed in the product. Managed by the **Product Owner**. Items are usually [[#6. User Stories 用户故事|user stories]].
+### 4.5 Extreme Programming (XP) 极限编程 (Quick Overview — 详见 [[Week6-TestDoubles-Methodologies#12. Extreme Programming XP 极限编程]])
 
-##### Sprint Backlog
-The set of stories selected for the **current sprint**, plus a plan for delivering them.
+XP 核心实践：**Pair Programming**, **TDD** ([[#11. Test-Driven Development (TDD) 测试驱动开发|详见下方]]), **CI**, **Refactoring**, **Simple Design**
 
-##### Increment
-The sum of all completed backlog items. Must be in a **usable condition** (potentially shippable).
-
-#### Scrum Flow 流程图:
-
-```
-Product Backlog → Sprint Planning → Sprint Backlog → Sprint (2-4 weeks)
-                                                         ↓
-                                              Daily Standup (every day)
-                                                         ↓
-                                              Sprint Review (demo)
-                                                         ↓
-                                              Sprint Retrospective (改进)
-                                                         ↓
-                                              Increment (可交付的产品增量)
-```
-
-> **Exam tip**: 记住 Scrum 的三个角色、五个事件、三个工件。这是高频考点。
-
-### 4.4 Kanban
-
-Another agile approach, originally from Toyota's manufacturing system.
-
-**Key concepts**:
-- **Visual board** 看板: columns represent workflow stages (To Do → In Progress → Done)
-- **WIP Limits** (Work In Progress): limit the number of items in each column to avoid overload
-- **Continuous flow**: no fixed-length sprints; work flows continuously
-- **Pull system**: new work is "pulled" when capacity is available
-
-**Kanban vs Scrum**:
-
-| Aspect | Scrum | Kanban |
-|--------|-------|--------|
-| Iterations | Fixed sprints | Continuous flow |
-| Roles | PO, SM, Team | No prescribed roles |
-| Changes | During sprint = no changes | Can change anytime |
-| WIP Limits | Sprint capacity | Per-column limits |
-
-### 4.5 Extreme Programming (XP) 极限编程
-
-XP emphasizes **engineering practices** more than other agile methods.
-
-Key XP Practices:
-- **Pair Programming** 结对编程: two developers work at one computer
-- **Test-Driven Development** ([[#11. Test-Driven Development (TDD) 测试驱动开发|TDD]]): write tests BEFORE code
-- **Continuous Integration**: merge code frequently (multiple times/day)
-- **Refactoring**: improve code structure without changing behavior
-- **Simple Design**: don't over-engineer; do the simplest thing that works
-- **Collective Code Ownership**: anyone can change any code
-- **40-hour Week**: sustainable pace
-
-> XP 的核心思想：通过极致的工程实践来保证代码质量。See also [[#11. Test-Driven Development (TDD) 测试驱动开发]].
+> XP 的核心思想：通过极致的工程实践来保证代码质量。完整实践列表见 [[Week6-TestDoubles-Methodologies#12. Extreme Programming XP 极限编程]]。
 
 ### 4.6 Comparison Summary 模型对比总结
 
