@@ -12,7 +12,7 @@
 - [[#2. Static Analysis 静态分析]]
 - [[#3. OO Design Fundamentals 面向对象设计基础]]
 - [[#4. GRASP Patterns GRASP模式]]
-- [[#5. Design Principles Deep Dive 设计原则深入]]
+- [[#5. Additional OO Design Principles 补充设计原则]]
 - [[#6. Design by Contract 契约式设计]]
 - [[#7. Module Decomposition 模块分解 (Parnas)]]
 - [[#8. Refactoring 重构]]
@@ -244,7 +244,7 @@ s2.area(); // → 12.0  (Rectangle's area)
 
 GRASP 是一组**分配职责（responsibility）的指导原则**，帮你决定：哪个类应该负责什么？
 
-> 💡 GRASP 不是 [[Week2-Software-Design#6. Design Patterns 设计模式|GoF Design Patterns]]（Factory, Strategy 等），而是更基础的**职责分配原则**。
+> 💡 GRASP 不是 [[Week4-DesignPatterns-Testing|GoF Design Patterns]]（Factory, Strategy 等），而是更基础的**职责分配原则**。
 
 ### The 9 GRASP Patterns
 
@@ -644,7 +644,7 @@ Module 5: Output (隐藏输出格式)
 > **Refactoring** = changing the **internal structure** of code without changing its **external behavior**.
 > **重构** = 改变代码的**内部结构**，但不改变其**外部行为**。
 
-在 [[Week2-Software-Design#10. Code Smells and Refactoring 代码异味与重构]] 中简单介绍过，这里深入学习。
+在 [[Week2-Software-Design#10. Code Smells and Refactoring 代码异味与重构（概述）]] 中简单介绍过，这里深入学习。
 
 ### Why Refactor? 为什么重构？
 
@@ -1070,5 +1070,5 @@ Refactoring Techniques
 - [[Week2-Software-Design#3. SOLID Principles SOLID原则|Week 2: SOLID]] → Week 3 深入理解 + 更多例子
 - [[Week2-Software-Design#4. Coupling and Cohesion 耦合与内聚|Week 2: Coupling/Cohesion]] → GRASP Low Coupling / High Cohesion 是同一概念
 - [[Week2-Software-Design#5. Information Hiding 信息隐藏|Week 2: Information Hiding]] → Parnas 论文是其理论起源
-- [[Week2-Software-Design#6. Design Patterns 设计模式|Week 2: Design Patterns]] → GRASP 是比 GoF 更基础的职责分配原则
-- [[Week2-Software-Design#10. Code Smells and Refactoring 代码异味与重构|Week 2: Code Smells intro]] → Week 3 完整的 smell catalog + refactoring catalog
+- [[Week4-DesignPatterns-Testing|Week 2: Design Patterns]] → GRASP 是比 GoF 更基础的职责分配原则
+- [[Week2-Software-Design#10. Code Smells and Refactoring 代码异味与重构（概述）|Week 2: Code Smells intro]] → Week 3 完整的 smell catalog + refactoring catalog
